@@ -1,47 +1,29 @@
 # -*- coding: utf-8 -*-
-from collections import namedtuple
+import pytest
+from django.contrib.auth.models import User
+from pytest import mark
+from rest_framework.reverse import reverse
+from rest_framework.test import APITestCase
+from rest_framework.test import force_authenticate, APIRequestFactory
+
+from occurrences.views import OccurrenceViewSet
 
 
-def monkey_products_return(monkeypatch):
-    return PRODUCTS_JSON_DICT
+@mark.usefixtures("create_users_registers")
+class TestCreateAuthorView(APITestCase):
 
+    @pytest.mark.urls('occurrences.urls')
+    def test_get_queryset(self):
+        url = reverse('occurrences-list')
 
-def monkey_no_result(monkeypatch):
-    return {}
+        response_not_authenticated = self.client.get(url)
 
+        factory = APIRequestFactory()
+        user = User.objects.get(username='admin')
+        view = OccurrenceViewSet.as_view({'get': 'list'})
+        request = factory.get(url)
+        force_authenticate(request, user=user)
+        response_authenticated = view(request)
 
-class MockResponse:
-    def json(self):
-        return PRODUCTS_JSON_DICT
-
-
-class MockResponseError():
-    def json(self):
-        raise ImportError
-
-
-class TestCreateAuthorView:
-    # name = None
-    json_object = JsonBaseImport(URL)
-
-    def test_get_response(self, monkeypatch):
-        mock_response = MockResponse()
-        monkeypatch.setattr(self.json_object, "response", mock_response)
-
-        json_response = self.json_object.get_response()
-
-        assert isinstance(json_response, dict)
-        assert 'Result' in json_response
-        assert 'ARTIGOS' in json_response['Result']
-        assert 'ARTIGO' in json_response['Result']['ARTIGOS']
-
-        product_designation = json_response['Result']['ARTIGOS']['ARTIGO'][0]['DESIGNACAO']
-        assert "P.RECAU. 235/75R17.5 C/CAR. BRIDGESTONE P.FRIO P45" in product_designation
-
-    def test_get_response_with_error(self, monkeypatch, enable_db_access):
-        mock_response = MockResponseError()
-        monkeypatch.setattr(self.json_object, "response", mock_response)
-
-        json_response = self.json_object.get_response()
-
-        assert json_response is None
+        assert response_not_authenticated.status_code == 403
+        assert response_authenticated.status_code == 200
