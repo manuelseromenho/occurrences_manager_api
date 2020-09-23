@@ -1,0 +1,42 @@
+[
+  {
+    "model": "occurrences.category",
+    "pk": 1,
+    "fields": {
+      "type": "CONSTRUCTION",
+      "description": "Planned roadworks events."
+    }
+  },
+  {
+    "model": "occurrences.category",
+    "pk": 2,
+    "fields": {
+      "type": "SPECIAL_EVENT",
+      "description": "Special events (concerts, fairs, etc)."
+    }
+  },
+  {
+    "model": "occurrences.category",
+    "pk": 3,
+    "fields": {
+      "type": "INCIDENT",
+      "description": "Accidents or other unexpected events."
+    }
+  },
+  {
+    "model": "occurrences.category",
+    "pk": 4,
+    "fields": {
+      "type": "WEATHER_CONDITION",
+      "description": "Meteorologic events that affects the roads."
+    }
+  },
+  {
+    "model": "occurrences.category",
+    "pk": 5,
+    "fields": {
+      "type": "ROAD_CONDITION",
+      "description": "Roads state thats affects who use them (degraded ground, holes, etc)"
+    }
+  }
+]

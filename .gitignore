@@ -1,0 +1,12 @@
+*.pyc
+.idea/
+
+venv/
+.cpython-36.pyc
+*/*/*/__pycache__/
+*/*/__pycache__/
+*/__pycache__/
+__pycache__/
+
+static
+uploads

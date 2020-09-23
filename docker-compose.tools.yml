@@ -1,0 +1,8 @@
+version: '3'
+services:
+  django:
+    build:
+      context: .
+      dockerfile: django.dockerfile
+    volumes:
+      - ".:/project"
