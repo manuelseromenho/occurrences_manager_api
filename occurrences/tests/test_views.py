@@ -14,7 +14,7 @@ class TestCreateAuthorView(APITestCase):
 
     @pytest.mark.urls('occurrences.urls')
     def test_get_queryset(self):
-        url = reverse('occurrences-list')
+        url = reverse('occurrence-list')
 
         response_not_authenticated = self.client.get(url)
 
