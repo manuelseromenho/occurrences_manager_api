@@ -8,4 +8,4 @@ class OccurrenceFilter(FilterSet):
 
     class Meta:
         model = Occurrence
-        fields = ('author', 'category')
+        fields = ('author', 'category', 'status')

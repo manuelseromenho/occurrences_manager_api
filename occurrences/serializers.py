@@ -1,9 +1,8 @@
-# from drf_extra_fields.geo_fields import PointField
+from django.contrib.auth import get_user_model  # If used custom user model
 from drf_extra_fields.geo_fields import PointField
+from rest_framework import serializers
 
 from occurrences.models import Occurrence, Category
-from rest_framework import serializers
-from django.contrib.auth import get_user_model # If used custom user model
 
 UserModel = get_user_model()
 
