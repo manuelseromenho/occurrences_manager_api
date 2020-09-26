@@ -20,10 +20,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = ')^4_4s2o0ox2)lyjz&yd+wmg#_78bdjk%$y(a!(b4nuoapuu2&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*",]
-
+PREPEND_WWW = True
 
 # Application definition
 
@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'occurrence_manager.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': os.getenv('DB_NAME', 'ocorrence_manager_db'),
-        'USER': os.getenv('DB_USER', 'ocorrence_manager_user'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'qwertyuiop'),
-        'HOST': os.getenv('DB_HOST', '127.0.0.1'),
+        'NAME': os.getenv('DB_NAME', 'd4nn8c1v9cl8ev'),
+        'USER': os.getenv('DB_USER', 'mnfzpsmkvfgglm'),
+        'PASSWORD': os.getenv('DB_PASSWORD', '40ffdc880d186981015d95a76636776df19e55e6ddf26178826131e9aa822395'),
+        'HOST': os.getenv('DB_HOST', 'ec2-54-246-87-132.eu-west-1.compute.amazonaws.com'),
         'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
