@@ -282,7 +282,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://0.0.0.0:8000/occurrences/?author=pedro1",
+					"raw": "http://0.0.0.0:8000/occurrences/",
 					"protocol": "http",
 					"host": [
 						"0",
@@ -303,7 +303,8 @@
 						},
 						{
 							"key": "author",
-							"value": "pedro1"
+							"value": "pedro1",
+							"disabled": true
 						},
 						{
 							"key": "radius",
@@ -313,6 +314,11 @@
 						{
 							"key": "geo_location",
 							"value": "37.066650 -8.099904",
+							"disabled": true
+						},
+						{
+							"key": "status",
+							"value": "closed",
 							"disabled": true
 						}
 					]
