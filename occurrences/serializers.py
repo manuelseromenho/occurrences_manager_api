@@ -1,27 +1,29 @@
+# from drf_extra_fields.geo_fields import PointField
+from drf_extra_fields.geo_fields import PointField
+
+from occurrences.models import Occurrence, Category
 from rest_framework import serializers
-from occurrences.models import Occurrence
+from django.contrib.auth import get_user_model # If used custom user model
+
+UserModel = get_user_model()
 
 
 class OccurrenceSerializer(serializers.ModelSerializer):
     author = serializers.ReadOnlyField(source='author.username')
-    category = serializers.CharField(source='category.type')
+    category = serializers.SlugRelatedField(
+        read_only=False,
+        queryset=Category.objects.all(),
+        slug_field='type'
+    )
+    geo_location = PointField()
 
     class Meta:
         model = Occurrence
         fields = ('url', 'id', 'author', 'geo_location', 'description',
                   'created', 'updated', 'status', 'category')
 
-    # def get_owner(self, obj):
-    #     return obj.owner.username
-
     def create(self, validated_data):
         return Occurrence.objects.create(**validated_data)
-
-
-from rest_framework import serializers
-from django.contrib.auth import get_user_model # If used custom user model
-
-UserModel = get_user_model()
 
 
 class CreateAuthorSerializer(serializers.ModelSerializer):
@@ -51,4 +53,3 @@ class AuthorSerializer(serializers.ModelSerializer):
 
     def get_author(self, obj):
         return obj.author.username
-

@@ -1,0 +1,340 @@
+{
+	"info": {
+		"_postman_id": "87075601-679f-4f84-9e01-73ff9f09f6b2",
+		"name": "Occurrences",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Author",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "manuel1",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "a",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "form-data",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "sam_1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "a",
+							"type": "text"
+						},
+						{
+							"key": "is_staff",
+							"value": "True",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "is_superuser",
+							"value": "True",
+							"type": "text",
+							"disabled": true
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8000/create_author/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"create_author",
+						""
+					]
+				},
+				"description": "Creates Authors"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Authors",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "a",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8000/authors",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"authors"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2",
+							"disabled": true
+						}
+					]
+				},
+				"description": "get list of authors"
+			},
+			"response": []
+		},
+		{
+			"name": "Update One Occurrence",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "a",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"GEO_LOCATION\":{\n        \"latitude\": -8.113746643066408,\n        \"longitude\": 37.08414608443832\n    },\n    \"category\": \"WEATHER_CONDITION\",\n    \"status\": \"closed\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8000/occurrences/2/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"occurrences",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Occurrence",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "pedro1",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "a",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\n    {\n        \"description\": \"Test for exercise 3\",\n        \"geo_location\": {\n            \"latitude\": 37.068563,\n            \"longitude\": -8.100765\n        },\n        \"category\": \"CONSTRUCTION\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8000/occurrences/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"occurrences",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Occurrences",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8000/occurrences/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"occurrences",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Occurrence By Author/Category/Radius",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "a",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8000/occurrences/?author=pedro1",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"occurrences",
+						""
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "CONSTRUCTION",
+							"disabled": true
+						},
+						{
+							"key": "author",
+							"value": "pedro1"
+						},
+						{
+							"key": "radius",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "geo_location",
+							"value": "37.066650 -8.099904",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "a",
+				"type": "string"
+			}
+		]
+	},
+	"protocolProfileBehavior": {}
+}

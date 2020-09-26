@@ -2,7 +2,6 @@ from django.contrib.auth import get_user_model  # If used custom user model
 from django.contrib.auth.models import User
 from django.contrib.gis.geos import GEOSGeometry
 from django.contrib.gis.measure import D
-from django.db import IntegrityError
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework import permissions
@@ -11,7 +10,7 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 
 from occurrences.filters import OccurrenceFilter
-from occurrences.models import Occurrence, Category
+from occurrences.models import Occurrence
 from occurrences.permissions import DontAllowCreateAdmin
 from occurrences.serializers import OccurrenceSerializer, AuthorSerializer, CreateAuthorSerializer
 
@@ -37,22 +36,7 @@ class OccurrenceViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, renderer_classes=[renderers.StaticHTMLRenderer])
     def perform_create(self, serializer):
-        from rest_framework.exceptions import NotFound
-        category = self.request.POST.get('category')
-        try:
-            category_obj = Category.objects.get(type=category)
-        except Category.DoesNotExist as e:
-            raise NotFound(e)
-
-        pnt_str = self.request.POST.get('geo_location')
-        if pnt_str:
-            pnt_obj = GEOSGeometry(f'POINT({pnt_str})')
-            serializer.save(author=self.request.user, geo_location=pnt_obj, category=category_obj)
-        else:
-            try:
-                serializer.save(author=self.request.user, category=category_obj)
-            except IntegrityError as e:
-                print(e)
+        serializer.save(author=self.request.user)
 
     def get_queryset(self):
         """
