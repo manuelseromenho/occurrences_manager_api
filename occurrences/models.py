@@ -34,4 +34,14 @@ class Occurrence(models.Model):
         return self.description
 
 
+class Pizza(models.Model):
+    name = models.CharField(max_length=40)
+    description = models.CharField(max_length=250, default='')
+    price = models.PositiveIntegerField(default=0)
 
+    class Meta:
+        verbose_name = 'Pizza'
+        verbose_name_plural = 'Pizzas'
+
+    def __str__(self):
+        return self.name
